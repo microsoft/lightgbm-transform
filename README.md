@@ -1,14 +1,13 @@
-# Project
+# LightGBM Transformation Library
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+The LightGBM transformation library aims at providing a flexible and automatic way to do feature transformation when using LightGBM.
+Instead of handling data yourself, user just need to prepare a feature spec which contains feature name, transform type and expression.
 
-As the maintainer of this project, please make a few updates:
+The library can work with LightGBM in a built-in way, which is more convenient for development and iteration. Compared to separate data transformation in advance, this way could put transformation and model in one place, so keep offline and online consistency.
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+## Get Started and Documentation
+
+- [Transform tutorial](https://github.com/microsoft/lightgbm-transform/blob/master/docs/Transform-Tutorial.rst).
 
 ## Contributing
 
