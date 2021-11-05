@@ -2,7 +2,9 @@
 
 set(PROJECT_NAME TransformProcessor)
 
-Project(${PROJECT_NAME})
+project(${PROJECT_NAME})
+
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../../)
 
 add_library(_transform SHARED
     IniFileParserInterface.h
@@ -36,7 +38,7 @@ target_link_libraries(_transform
     DRFreeFormSExpressionLibrary
     DRFreeFormLibrary
     NeuralTreeEvaluatorLibrary
-    ${BOOST_LIB}
+    ${Boost_LIBRARIES}
     ${LLVM_LIB}
     -Wl,--end-group
     )

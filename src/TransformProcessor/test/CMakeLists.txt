@@ -39,7 +39,7 @@ target_link_libraries(${PROJECT_NAME}
     DRFreeFormLibrary
     NeuralTreeEvaluatorLibrary
     _transform
-    ${BOOST_LIB}
+    ${Boost_LIBRARIES}
     ${LLVM_LIB}
     -Wl,--end-group
     )
