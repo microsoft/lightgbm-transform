@@ -48,41 +48,6 @@ set(LLVM_LIB
     LLVMX86Utils
     )
 
-set(BOOST_LIB
-    boost_atomic
-    boost_chrono
-    boost_context
-    boost_coroutine
-    boost_date_time
-    boost_exception
-    boost_filesystem
-    boost_graph
-    boost_graph_parallel
-    boost_iostreams
-    boost_locale
-    boost_log
-    boost_log_setup
-    boost_math_c99
-    boost_math_c99f
-    boost_math_c99l
-    boost_math_tr1
-    boost_math_tr1f
-    boost_math_tr1l
-    boost_mpi
-    boost_prg_exec_monitor
-    boost_program_options
-    boost_random
-    boost_regex
-    boost_serialization
-    boost_system
-    boost_test_exec_monitor
-    boost_thread
-    boost_timer
-    boost_unit_test_framework
-    boost_wave
-    boost_wserialization
-    )
-
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 if(USE_DEBUG)
     SET(CMAKE_BUILD_TYPE "Debug")

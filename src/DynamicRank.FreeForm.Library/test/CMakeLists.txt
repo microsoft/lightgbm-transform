@@ -45,7 +45,7 @@ target_link_libraries(${PROJECT_NAME}
     DRFreeFormTransformLibrary
     DRFreeFormSExpressionLibrary
     DRFreeFormLibrary
-    ${BOOST_LIB}
+    ${Boost_LIBRARIES}
     ${LLVM_LIB}
     -Wl,--end-group
     )
