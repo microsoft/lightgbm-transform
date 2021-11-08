@@ -1,8 +1,7 @@
 # run command `sh ./scripts/publish_python_package.sh` in repo root dir.
 lgb_python_pkg_dir="./external_libs/LightGBM/python-package"
 # compile transformation, lightgbm, and customized parser libs.
-# rm -rf build && mkdir build && 
-cd build && cmake ../ && make -j4 && cd ../ || exit -1
+rm -rf build && mkdir build && cd build && cmake ../ && make -j4 && cd ../ || exit -1
 # copy all shared libs to lightgbm python package directory.
 cp ./lib_custom_parser.so ${lgb_python_pkg_dir}/lightgbm && \
 cp ./src/lib_transform.so ${lgb_python_pkg_dir}/lightgbm && \
