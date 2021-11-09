@@ -1,7 +1,7 @@
-Currently, the transform supported LightGBM can be built with gcc/g++ on linux platform.
+LightGBM Transformation Installation Guide
+==========================================
 
-Linux
-^^^^^
+Currently, the transform supported LightGBM can be built with gcc/g++ on linux platform.
 
 The following dependencies should be installed before compilation:
 
@@ -36,15 +36,25 @@ See below docker file as an example for required dependencies installation.
       RUN mkdir build && cd build && cmake -DBOND_ENABLE_GRPC=FALSE .. && make -j4 && make install
       ...
 
-To build LightGBM transform version, run the following commands:
+To install LightGBM transform version, you could simply run following command:
 
    .. code::
 
-     git clone -b feat/enable_transform_to_lgbm --recursive git@github.com:microsoft/LightGBM.git
-     cd LightGBM
-     mkdir build
-     cd build
-     cmake -DUSE_TRANSFORM=ON ..
-     make -j4
+      pip install lightgbm-transform==3.3.1 --extra-index-url https://test.pypi.org/simple
 
-**Note**: You can also install from python sdk with command ``python3 setup.py install --transform``.
+Alternatively, you could publish your own package with following commands:
+
+   .. code::
+
+      git clone --recursive https://github.com/microsoft/lightgbm-transform/
+      cd lightgbm-transform
+      # change version and package name in ./external_libs/LightGBM/python-package manually
+      # install twine first
+      sh ./scripts/publish_python_package.sh
+
+
+.. _CMake: https://cmake.org/
+
+.. _llvm: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-3.5.1.tar.gz
+
+.. _bond: https://github.com/microsoft/bond.git
