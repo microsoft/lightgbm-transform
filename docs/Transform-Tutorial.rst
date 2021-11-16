@@ -1,7 +1,7 @@
 LightGBM Transform Tutorial
 ===========================
 
-The purpose of this document is to give you a tutorial on how to do transformation in LightGBM with `FreeForm2Parser <./examples/freeform2_parser.cpp>`__.
+The purpose of this document is to give you a tutorial on how to do transformation in LightGBM with `FreeForm2Parser <../examples/freeform2_parser.cpp>`__.
 
 Transformation is a process to convert data/feature from one format to another.
 Now we support two kinds of transformations in LightGBM:
@@ -42,7 +42,7 @@ Data preparation
 
     **Note**: transform value is the content of transform file.
     Transform file is not a supplement of raw features, but all used for training. Use "Linear" type if you want to keep the original ones.
-    See `FreeForm2 language spec <./FreeForm2-Language>`__ and learn more about the grammar.
+    See `FreeForm2 language spec <./FreeForm2-Language.rst>`__ and learn more about the grammar.
 
     **Note**: transformed feature index ranges from 0 to the maximum "Input" value given in transform file.
     By default, will pad 0 as feature value for missing indices within the range.
