@@ -40,7 +40,7 @@ To install LightGBM transform version, you could simply run following command:
 
    .. code::
 
-      pip install lightgbm-transform==3.3.1 --extra-index-url https://test.pypi.org/simple
+      pip install lightgbm-transform==3.3.1
 
 Alternatively, you could publish your own package with following commands:
 
