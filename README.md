@@ -12,8 +12,10 @@ In the repo, user could learn about:
 
 ## Get Started and Documentation
 
-- [Customized parser tutorial](./docs/Customized-Parser-Tutorial.rst).
-- [Transform tutorial](./docs/Transform-Tutorial.rst).
+- [Installation guide](./docs/Installation-Guide.rst)
+- [Customized parser tutorial](./docs/Customized-Parser-Tutorial.rst)
+- [Transform tutorial](./docs/Transform-Tutorial.rst)
+- [FreeForm2 language spec](./docs/FreeForm2-Language.rst)
 
 ## Contributing
 

@@ -10,4 +10,4 @@ The basic methodology is to register custom parser to parser factory via reflect
 
 - See `Installation Guide <./Installation-Guide.rst>`__ for dependencies and your parser installation.
 
-- See `Transform tutorial <./Transform-tutorial.rst>`__ for how to use LightGBM integrated with your parser version.
+- See `Transform tutorial <./Transform-Tutorial.rst>`__ for how to use LightGBM integrated with your parser version.
