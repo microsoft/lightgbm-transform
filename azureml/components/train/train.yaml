@@ -1,0 +1,40 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
+$schema: http://azureml/sdk-2-0/CommandComponent.json
+name: microsoft.com.azureml.test.integrated_transformLib_lightGBM_train
+version: 0.0.1
+display_name: Integrated FreeForm2 lightGBM Train
+type: CommandComponent
+description: Train with lightGBM feature transformation binding.
+tags: {}
+inputs: 
+  train_data_path:
+    type: path
+    description: The file path for the training data.
+  parser_config_path:
+    type: path
+    description: The file path for the feature spec.
+outputs: 
+  model_path:
+    type: path
+    description: The output file path for the trained LightGBM model.
+command: >-
+  python train.py --train-data-path {inputs.train_data_path} --parser-config-path {inputs.parser_config_path} --model-path {outputs.model_path}
+environment:
+  docker:
+    image: transformprocessor.azurecr.io/lightgbm_transform_dependencies:20211109.v1
+    registry:
+      username: username
+      password: password
+  conda:
+    conda_dependencies:
+      name: project_environment
+      channels:
+      - defaults
+      dependencies:
+      - python=3.8
+      - pip=20.0
+      - pip:
+        - lightgbm-transform==3.3.1 
+  os: Linux
