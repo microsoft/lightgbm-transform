@@ -1,0 +1,40 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
+$schema: http://azureml/sdk-2-0/CommandComponent.json
+name: microsoft.com.azureml.test.integrated_transformlib_lightGBM_infer
+version: 0.0.1
+display_name: Integrated FreeForm2 lightGBM Infer
+type: CommandComponent
+description: Infer with lightGBM feature transformation binding.
+tags: {}
+inputs: 
+  infer_data_path:
+    type: path
+    description: The file path for the inference data.
+  model_path:
+    type: path
+    description: The file path for the trained LightGBM model.
+outputs:
+  infer_result:
+    type: path
+    description: The file path for the inference result.
+command: >-
+  python infer.py --infer-data-path {inputs.infer_data_path} --model-path {inputs.model_path} --infer-result {outputs.infer_result}
+environment:
+  docker:
+    image: transformprocessor.azurecr.io/lightgbm_transform_dependencies:20211109.v1
+    registry:
+      username: username
+      password: password
+  conda:
+    conda_dependencies:
+      name: project_environment
+      channels:
+      - defaults
+      dependencies:
+      - python=3.8
+      - pip=20.0
+      - pip:
+        - lightgbm-transform==3.3.1 
+  os: Linux
