@@ -1,13 +1,19 @@
 # LightGBM Transformation Library
 
-The LightGBM transformation library aims at providing a flexible and automatic way to do feature transformation when using LightGBM.
-Instead of handling data yourself, user just need to prepare a feature spec which contains feature name, transform type and expression.
+The LightGBM transformation library aims at providing a flexible and automatic way to do feature transformation when using [`LightGBM`](https://github.com/microsoft/LightGBM). Compared to separate transformation. this way has several pros:
 
-The library can work with LightGBM in a built-in way, which is more convenient for development and iteration. Compared to separate data transformation in advance, this way could put transformation and model in one place, so keep offline and online consistency.
+- More efficient. Data preprocessing can go with parsing each line, and take advantage of multi-processing designed by lightgbm naturally. No need to store whole transformed data in file/memory.
+- More convenient for development and iteration. Built-in transformation could keep offline and online consistent well by saved/loaded along with model.
+
+In the repo, user could learn about:
+
+- How to customize favorite parser by playing with LightGBM Parser interface.
+- How to use [`FreeForm2Parser`](./examples/freeform2_parser.cpp), a powerful and efficient tool built in the repo, in model training. Instead of handling data yourself, user just need to prepare a feature spec which contains feature name, transform type and expression, and make slight changes in experiment iterations.
 
 ## Get Started and Documentation
 
-- [Transform tutorial](https://github.com/microsoft/lightgbm-transform/blob/master/docs/Transform-Tutorial.rst).
+- [Customized parser tutorial](./docs/Customized-Parser-Tutorial.rst).
+- [Transform tutorial](./docs/Transform-Tutorial.rst).
 
 ## Contributing
 
