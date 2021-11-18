@@ -21,7 +21,7 @@ See below docker file as an example for required dependencies installation.
 
       FROM ubuntu:20.04
       # Install CMake, gcc, g++, boost.
-      RUN apt-get update && apt-get -y upgrade && DEBIAN_FRONTEND="noninteractive" apt-get install -y libboost-all-dev gcc g++ wget cmake git curl
+      RUN apt-get update && apt-get -y upgrade && DEBIAN_FRONTEND="noninteractive" apt-get install -y libboost-all-dev gcc g++ wget cmake git curl libtinfo5
       # Install LLVM with RTTI feature.
       WORKDIR /root
       RUN wget https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-3.5.1.tar.gz && tar zxvf llvmorg-3.5.1.tar.gz
