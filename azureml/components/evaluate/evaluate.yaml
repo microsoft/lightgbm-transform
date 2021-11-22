@@ -1,0 +1,32 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
+$schema: http://azureml/sdk-2-0/CommandComponent.json
+name: microsoft.com.azureml.test.evaluation
+version: 0.0.1
+display_name: Evaluation
+type: CommandComponent
+description: Evaluation module
+tags: {}
+inputs: 
+  predict_result:
+    type: path
+    description: The predict result for the evaluating data.
+outputs: 
+  evaluation_result:
+    type: path
+    description: The output evaluation result.
+command: >-
+  python evaluate.py --predict-result {inputs.predict_result} --evaluation-result {outputs.evaluation_result}
+environment:
+  conda:
+    conda_dependencies:
+      name: project_environment
+      channels:
+      - defaults
+      dependencies:
+      - python=3.8
+      - pip=20.0
+      - pip:
+        - scikit-learn==0.22.2
+  os: Linux

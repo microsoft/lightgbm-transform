@@ -1,8 +1,8 @@
 import argparse
 import logging
-import lightgbm as lgb
-import numpy as np
 import os
+
+import lightgbm as lgb
 
 
 if __name__ == '__main__':
@@ -13,7 +13,11 @@ if __name__ == '__main__':
     )
     parser.add_argument(
         '--parser-config-path',
-        help='The file path for the feature spec.',
+        help='The json path for parser config.',
+    )
+    parser.add_argument(
+        '--label',
+        help='Label column name.',
     )
     parser.add_argument(
         '--model-path',
@@ -22,6 +26,7 @@ if __name__ == '__main__':
     args, _ = parser.parse_known_args()
     train_data_path = args.train_data_path
     parser_config_path = args.parser_config_path
+    label = args.label
     model_path = args.model_path
 
     logger = logging.getLogger()
@@ -31,23 +36,27 @@ if __name__ == '__main__':
     train_data = lgb.Dataset(train_data_path,
                              params={
                                  "parser_config_file": parser_config_path,
-                                 "label": 'name:m:Rating'
+                                 "label": f'name:{label}'
                              })
-    train_data.construct()
-
     params = {
-        'learning_rate': 0.1,
-        'lambda_l1': 0.1,
-        'lambda_l2': 0.2,
-        'max_depth': 4,
-        'objective': 'multiclass',
-        'num_class': np.max(train_data.get_label().astype(int)) + 1,
-        'seed': 2021,
+        'boosting': 'gbdt',
+        'learning_rate': 0.22,
+        'objective': 'lambdarank',
+        'ndcg_eval_at': "1,3,5",
+        'metric_freq': 1,
+        'label_gain': ','.join([str(i) for i in range(350)]),
+        'metric': 'ndcg',
+        'num_trees': 800,
+        'num_leaves': 300,
+        'min_data_in_leaf': 50,
+        'max_bin': 16,
+        'query': 0,
+        'feature_fraction': 0.15,
+        # Make sure the stable result given the same input
         'deterministic': 'true',
         'force_col_wise': 'true'
     }
-
-    bst = lgb.train(params, train_data)
+    bst = lgb.train(params, train_data, valid_sets=[train_data])
     logger.info('Finished training.')
     if os.path.isdir(model_path):
         logger.info(
