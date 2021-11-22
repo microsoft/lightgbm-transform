@@ -47,7 +47,7 @@ Data preparation
     **Note**: transformed feature index ranges from 0 to the maximum "Input" value given in transform file.
     By default, will pad 0 as feature value for missing indices within the range.
 
-    **Kindly reminder**: you could auto-generate parser config file with command
+    **Kindly reminder**: you could auto-generate parser config file with command. Note that `header_file` is an optional argument.
 
     .. code::
 

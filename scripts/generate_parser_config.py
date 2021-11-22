@@ -14,6 +14,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--header_file',
         help='The file path for the header file.',
+        default=""
     )
     parser.add_argument(
         '--parser_config_file',
@@ -24,16 +25,18 @@ if __name__ == '__main__':
     transform_file = args.transform_file
     header_file = args.header_file
     parser_config_file = args.parser_config_file
-
     # generate json config.
     with open(transform_file) as fin:
         transform_str = ''.join(fin.readlines())
-    with open(header_file) as fin:
-        header_str = ''.join(fin.readlines())
+
     parser_config = {
         "className": class_name,
-        "transform": transform_str,
-        "header": header_str,
+        "transform": transform_str
     }
+    if (len(header_file) > 0):
+        with open(header_file) as fin:
+            header_str = ''.join(fin.readlines())
+            parser_config["header"] = header_str
+
     with open(parser_config_file, 'w') as fout:
         json.dump(parser_config, fout)
