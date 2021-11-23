@@ -17,13 +17,59 @@ inputs:
     description: The json path for parser config.
   label:
     type: string
-    description: label column name
+    description: Label column name.
+  lr:
+    type: float
+    description: Learning rate.
+    default: 0.22
+    optional: true
+  metric_freq:
+    type: integer
+    description: Metric frequency.
+    default: 1
+    optional: true
+  label_gain:
+    type: string
+    description: Label gain.
+  num_trees:
+    type: integer
+    description: Number of trees.
+    default: 10
+    optional: true
+  num_leaves:
+    type: integer
+    description: Number of leaves.
+    default: 30
+    optional: true
+  min_data_in_leaf:
+    type: integer
+    description: Minimum data in a leaf.
+    default: 50
+    optional: true
+  max_bin:
+    type: integer
+    description: Maximum bin.
+    default: 16
+    optional: true
+  query:
+    type: integer
+    description: Group column index. Must be the index of transformed feature in parser config.
+    default: 0
+    optional: true
+  feature_fraction:
+    type: float
+    description: Feature fraction.
+    default: 0.15
+    optional: true
 outputs: 
   model_path:
     type: path
     description: The output file path for the trained LightGBM model.
 command: >-
-  python train.py --train-data-path {inputs.train_data_path} --parser-config-path {inputs.parser_config_path} --label {inputs.label} --model-path {outputs.model_path}
+  python train.py --train-data-path {inputs.train_data_path} --parser-config-path {inputs.parser_config_path} --label {inputs.label}
+  [--lr {inputs.lr}] [--metric-freq {inputs.metric_freq}] --label-gain {inputs.label_gain} [--num-trees {inputs.num_trees}]
+  [--num-leaves {inputs.num_leaves}] [--min-data-in-leaf {inputs.min_data_in_leaf}] [--max-bin {inputs.max_bin}]
+  [--query {inputs.query}] [--feature-fraction {inputs.feature_fraction}] --model-path {outputs.model_path}
 environment:
   docker:
     image: docker.io/krystal1130/lightgbm_transform_dependencies:20211109.v1
@@ -36,5 +82,5 @@ environment:
       - python=3.8
       - pip=20.0
       - pip:
-        - lightgbm-transform==3.3.1 
+        - lightgbm-transform==3.3.1
   os: Linux
