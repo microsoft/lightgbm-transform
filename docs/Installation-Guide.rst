@@ -40,7 +40,7 @@ To install LightGBM transform version, you could simply run following command:
 
    .. code::
 
-      pip install lightgbm-transform==3.3.1
+      pip install lightgbm-transform
 
 Alternatively, you could publish your own package with following commands:
 
@@ -48,7 +48,6 @@ Alternatively, you could publish your own package with following commands:
 
       git clone --recursive https://github.com/microsoft/lightgbm-transform/
       cd lightgbm-transform
-      # change version and package name in ./external_libs/LightGBM/python-package manually
       # install twine first
       sh ./scripts/publish_python_package.sh
 
