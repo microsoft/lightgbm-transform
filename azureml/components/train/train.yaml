@@ -82,5 +82,5 @@ environment:
       - python=3.8
       - pip=20.0
       - pip:
-        - lightgbm-transform==3.3.1
+        - lightgbm-transform==3.3.1.post1 
   os: Linux
