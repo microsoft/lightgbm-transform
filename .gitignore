@@ -1,4 +1,5 @@
 build
+compile
 *egg-info
 dist
 *.so
