@@ -47,14 +47,25 @@ Data preparation
     **Note**: transformed feature index ranges from 0 to the maximum "Input" value given in transform file.
     By default, will pad 0 as feature value for missing indices within the range.
 
-    **Kindly reminder**: you could auto-generate parser config file with command. Note that `header_file` is an optional argument.
+    **Note**: the `query_idx` parameter means the index of query in in raw data.(Tips: query is just an alias `group column <https://lightgbm.readthedocs.io/en/latest/Parameters.html?highlight=query#group_column>`_, use other names are ok.) 
+    We will set query as the last line of the transform_str, and its index in transformed data is the same as total Input number.
+    Now we only support index number, as supporting select by name will introduces big changes to lightGBM src code.
+    
+    **Kindly reminder**: you could auto-generate parser config file with command. Note that header_file and `query_idx` are optional arguments.
+    The auto generation for query only work when header_file exists. The query feature won't be included in training with other features. LightGBM can ignore it correctly.
+    Our script will use "Linear" to auto generate an "Input" at the end of transform_str.
+    After generation, the script will print the new index for query column in transformed data to help user understand.
+
 
     .. code::
 
-        python ./scripts/generate_parser_config.py --class_name your_parser_name --transform_file path/to/transform --header_file path/to/header --parser_config_file path/to/parser_config
+        python ./scripts/generate_parser_config.py --class_name your_parser_name --transform_file path/to/transform --header_file path/to/header --parser_config_file path/to/parser_config --query_idx raw_query_id
 
 **Note**: if no parser config file is given, 
 the input data will be used as features directly for training.
+
+**Note**: if header_file doesn't exist, `query_idx` won't work. Please make sure that `query_idx` won't exceed the maximum of raw data column.
+
 
 Run task
 --------
