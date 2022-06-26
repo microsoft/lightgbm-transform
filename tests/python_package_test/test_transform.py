@@ -150,3 +150,15 @@ def test_train_label_id_less_than_transformed_feature_num(binary_params):
     bst = lgb.train(binary_params, train_data, valid_sets=[train_data])
     pred = bst.predict(simple_ds.data)
     np.testing.assert_allclose(pred[:5], np.array([0.4894574, 0.43920928, 0.71112129, 0.43920928, 0.39602784]))
+
+
+def test_continue_training(params):
+    train_data = lgb.Dataset(rank_ds.data, params={"parser_config_file": rank_ds.parser_config}, free_raw_data = False)
+    bst = lgb.train(params, train_data, valid_sets=[train_data])
+    # 'num_trees' parameter is 10, which means the number of boosting iteration round is 10 in this case, so the current_iteration is 10.
+    assert bst.current_iteration() == 10
+    params['num_trees'] = 20
+    params['num_leaves'] = 63
+    # continue train 20 iterations, finally we could se the current iteration is 30.
+    continue_train_bst = lgb.train(params, train_data, valid_sets=[train_data], init_model=bst)
+    assert continue_train_bst.current_iteration() == 30
