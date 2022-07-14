@@ -34,11 +34,13 @@ jobs:
           submodules: true
 
       - name: Setup and run tests
+        uses: docker://krystal1130/lightgbm_transform_dependencies:20211109.v1
         shell: bash
         run: |
-          export CONDA=${HOME}/miniconda
-          export PATH=${CONDA}/bin:${PATH}
-          sudo sh $GITHUB_WORKSPACE/.ci/setup.sh || exit -1
+          pwd
+          # export CONDA=${HOME}/miniconda
+          # export PATH=${CONDA}/bin:${PATH}
+          # sudo sh $GITHUB_WORKSPACE/.ci/setup.sh || exit -1
           # $GITHUB_WORKSPACE/.ci/test.sh || exit -1
 
   all-successful:
