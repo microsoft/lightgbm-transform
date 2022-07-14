@@ -21,12 +21,16 @@ jobs:
   test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    container:
+      image: krystal1130/lightgbm_transform_dependencies:20211109.v1
     timeout-minutes: 120
     strategy:
       fail-fast: false
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Check for dockerenv file
+        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
         uses: actions/checkout@v2.4.0
@@ -34,7 +38,6 @@ jobs:
           submodules: true
 
       - name: Setup and run tests
-        uses: docker://krystal1130/lightgbm_transform_dependencies:20211109.v1
         shell: bash
         run: |
           pwd
