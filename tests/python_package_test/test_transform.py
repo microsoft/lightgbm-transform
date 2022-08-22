@@ -99,10 +99,9 @@ def test_e2e(params, trained_model_path):
     np.testing.assert_allclose(pred[:5], np.array([0.83267298, 0.388454, 0.35369267, 0.60330376, -1.24218415]))
 
 
-def test_train_data_no_header(binary_params, simple_ds_with_header, trained_model_path):
+def test_train_data_no_header(binary_params, simple_ds_with_header):
     train_data = lgb.Dataset(simple_ds.data, params={"parser_config_file": simple_ds.parser_config})
-    valid_data = lgb.Dataset(simple_ds_with_header.data, params={
-        "parser_config_file": simple_ds_with_header.parser_config, "header": True})
+    valid_data = lgb.Dataset(simple_ds_with_header.data, params={"header": True})
     bst = lgb.train(binary_params, train_data, valid_sets=[valid_data])
     expected_pred = 0.4894574
     # predict data with no header.
