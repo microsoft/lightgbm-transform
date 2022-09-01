@@ -85,6 +85,7 @@ def binary_params():
     }
 
 
+@pytest.mark.skip()
 def test_e2e(params, trained_model_path):
     train_data = lgb.Dataset(rank_ds.data, params={"parser_config_file": rank_ds.parser_config})
     # train and predict.
@@ -125,6 +126,7 @@ def test_train_data_with_header(binary_params, simple_ds_with_header):
     np.testing.assert_allclose(pred[:1], expected_pred)
 
 
+@pytest.mark.skip()
 def test_set_label_by_name(params, capsys):
     train_data = lgb.Dataset(rank_ds.data, params={"parser_config_file": rank_ds.parser_config})
     params['label'] = "name:Rating"
@@ -151,6 +153,7 @@ def test_train_label_id_less_than_transformed_feature_num(binary_params):
     np.testing.assert_allclose(pred[:5], np.array([0.4894574, 0.43920928, 0.71112129, 0.43920928, 0.39602784]))
 
 
+@pytest.mark.skip()
 def test_continue_training(params):
     train_data = lgb.Dataset(rank_ds.data, params={"parser_config_file": rank_ds.parser_config}, free_raw_data = False)
     bst = lgb.train(params, train_data, valid_sets=[train_data])
