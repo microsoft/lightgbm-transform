@@ -1,18 +1,18 @@
 
 [Input:1]
-Line1=(* OriginalQueryMaxNumberOfPerfectMatches_BingIESession-Prod OriginalQueryMaxNumberOfPerfectMatches_BingClicks-Prod)
+Line1=(* f0 f1)
 Transform=FreeForm2
 Slope=1
 Intercept=0
 
 [Input:2]
-Line1=(* OriginalQueryMaxNumberOfPerfectMatches_BingClicks-Prod OriginalQueryFuzzyWordsFound_BingClicks-Prod_4_0)
+Line1=(* f1 f2)
 Transform=FreeForm2
 Slope=1
 Intercept=0
 
 [Input:3]
-Line1=(* MaxNumberOfCompleteMatches_BingIESession-Prod OriginalQueryFuzzyWordsFound_BingClicks-Prod_6_0)
+Line1=(* f3 f4)
 Transform=FreeForm2
 Slope=1
 Intercept=0
