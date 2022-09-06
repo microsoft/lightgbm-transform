@@ -47,8 +47,8 @@ jobs:
         shell: bash
         run: |
           pytest ./tests
-          g++ ./src/TransformProcessor/test/Tests.cpp -o cpp_test
-          ./cpp_test
+          g++ ./src/TransformProcessor/test/Tests.cpp -o cpp_test.o
+          ./cpp_test.o
 
   all-successful:
     # https://github.community/t/is-it-possible-to-require-all-github-actions-tasks-to-pass-without-enumerating-them/117957/4?u=graingert
