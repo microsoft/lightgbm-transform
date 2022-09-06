@@ -40,12 +40,12 @@ jobs:
         shell: bash
         run: |
           sh ./.ci/setup.sh || exit -1
-          export PYTHONPATH=${GITHUB_WORKSPACE}/external_libs/LightGBM/python-package
-          echo ${PYTHONPATH}
 
       - name: Test
         shell: bash
         run: |
+          export PYTHONPATH=${GITHUB_WORKSPACE}/external_libs/LightGBM/python-package
+          echo ${PYTHONPATH}
           pytest ./tests
           g++ ./src/TransformProcessor/test/Tests.cpp -o cpp_test.o
           ./cpp_test.o
