@@ -47,7 +47,7 @@ jobs:
           export PYTHONPATH=${GITHUB_WORKSPACE}/external_libs/LightGBM/python-package
           echo ${PYTHONPATH}
           pytest ./tests
-          g++ ./src/TransformProcessor/test/Tests.cpp -o cpp_test.o
+          g++ ./src/TransformProcessor/test/Tests.cpp -o cpp_test.o -I ./src/TransformProcessor/src
           ./cpp_test.o
 
   all-successful:
