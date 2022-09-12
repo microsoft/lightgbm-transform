@@ -47,8 +47,7 @@ jobs:
           export PYTHONPATH=${GITHUB_WORKSPACE}/external_libs/LightGBM/python-package
           echo ${PYTHONPATH}
           pytest ./tests
-          g++ ./src/TransformProcessor/test/Tests.cpp -o cpp_test.o -I ./src/TransformProcessor/src
-          ./cpp_test.o
+          ./build/src/TransformProcessor/test/Tests
 
   all-successful:
     # https://github.community/t/is-it-possible-to-require-all-github-actions-tasks-to-pass-without-enumerating-them/117957/4?u=graingert
