@@ -12,6 +12,6 @@ cp ./external_libs/LightGBM/lib_lightgbm.so ${lgb_python_pkg_dir}/lightgbm || ex
 # modify `basic.py` to load all libs first, or cannot find them when calling python interfaces.
 cp ${lgb_python_pkg_dir}/lightgbm/basic.py raw && cat ./scripts/load_precompiled_libs.py ${lgb_python_pkg_dir}/lightgbm/basic.py > tmp && cp tmp ${lgb_python_pkg_dir}/lightgbm/basic.py || exit -1
 # install python package
-# install sklearn to avoid error "ImportError: cannot import name '_LGBMBaseCrossValidator' from 'lightgbm.compat'"
-pip install pytest numpy scipy pandas sklearn
+# install scikit-learn to avoid error "ImportError: cannot import name '_LGBMBaseCrossValidator' from 'lightgbm.compat'"
+pip install pytest numpy scipy pandas scikit-learn
 pip list
