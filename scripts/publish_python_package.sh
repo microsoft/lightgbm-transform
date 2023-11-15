@@ -11,7 +11,7 @@ cp ./external_libs/LightGBM/lib_lightgbm.so ${lgb_python_pkg_dir}/ || exit -1
 # modify `basic.py` to load all libs first, or cannot find them when calling python interfaces.
 cp ${lgb_python_pkg_dir}/lightgbm/basic.py raw && cat ./scripts/load_precompiled_libs.py ${lgb_python_pkg_dir}/lightgbm/basic.py > tmp && cp tmp ${lgb_python_pkg_dir}/lightgbm/basic.py || exit -1
 mkdir compile
-cp -r ${lgb_python_pkg_dir}/lightgbm ./compile/ && cp ${lgb_python_pkg_dir}/MANIFEST.in ./compile/ || exit -1
+cp -r ${lgb_python_pkg_dir}/*.so ./compile/ && cp -r ${lgb_python_pkg_dir}/lightgbm ./compile/ && cp ${lgb_python_pkg_dir}/MANIFEST.in ./compile/ || exit -1
 cp ./scripts/setup.py ./compile/ && cp ./scripts/README.rst ./compile && cp VERSION.txt ./compile || exit -1
 # pack wheel package.
 cd compile && python setup.py bdist_wheel --precompile && cd ../ || exit -1
