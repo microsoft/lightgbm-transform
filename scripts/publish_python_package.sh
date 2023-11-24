@@ -18,6 +18,6 @@ cp ./scripts/setup.py ./compile/ && cp ./scripts/README.rst ./compile && cp VERS
 # pack wheel package.
 cd compile && python setup.py bdist_wheel --precompile && cd ../ || exit -1
 # upload package to your pypi, use testpypi as an example.
-twine upload --repository pypi compile/dist/* || exit -1
+# twine upload --repository pypi compile/dist/* || exit -1
 # revert changes.
-rm -rf ${lgb_python_pkg_dir}/lightgbm/*.so build compile || exit -1
+# rm -rf ${lgb_python_pkg_dir}/lightgbm/*.so build compile || exit -1
