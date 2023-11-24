@@ -11,9 +11,28 @@ from typing import List, Optional, Union
 
 from setuptools import find_packages, setup
 from setuptools.command.install import install
+from wheel.bdist_wheel import bdist_wheel
 
 sys.path.insert(0, '../external_libs/LightGBM/python-package')
-from setup import LIGHTGBM_OPTIONS, CustomBdistWheel, clear_path
+
+LIGHTGBM_OPTIONS = [
+    ('mingw', 'm', 'Compile with MinGW'),
+    ('integrated-opencl', None, 'Compile integrated OpenCL version'),
+    ('gpu', 'g', 'Compile GPU version'),
+    ('cuda', None, 'Compile CUDA version'),
+    ('mpi', None, 'Compile MPI version'),
+    ('nomp', None, 'Compile version without OpenMP support'),
+    ('hdfs', 'h', 'Compile HDFS version'),
+    ('bit32', None, 'Compile 32-bit version'),
+    ('precompile', 'p', 'Use precompiled library'),
+    ('time-costs', None, 'Output time costs for different internal routines'),
+    ('boost-root=', None, 'Boost preferred installation prefix'),
+    ('boost-dir=', None, 'Directory with Boost package configuration file'),
+    ('boost-include-dir=', None, 'Directory containing Boost headers'),
+    ('boost-librarydir=', None, 'Preferred Boost library directory'),
+    ('opencl-include-dir=', None, 'OpenCL include directory'),
+    ('opencl-library=', None, 'Path to OpenCL library')
+]
 
 
 class CustomInstall(install):
@@ -53,6 +72,52 @@ class CustomInstall(install):
         install.run(self)
         if LOG_PATH.is_file():
             LOG_PATH.unlink()
+
+
+class CustomBdistWheel(bdist_wheel):
+
+    user_options = bdist_wheel.user_options + LIGHTGBM_OPTIONS
+
+    def initialize_options(self) -> None:
+        bdist_wheel.initialize_options(self)
+        self.mingw = False
+        self.integrated_opencl = False
+        self.gpu = False
+        self.cuda = False
+        self.boost_root = None
+        self.boost_dir = None
+        self.boost_include_dir = None
+        self.boost_librarydir = None
+        self.opencl_include_dir = None
+        self.opencl_library = None
+        self.mpi = False
+        self.hdfs = False
+        self.precompile = False
+        self.time_costs = False
+        self.nomp = False
+        self.bit32 = False
+
+    def finalize_options(self) -> None:
+        bdist_wheel.finalize_options(self)
+
+        install = self.reinitialize_command('install')
+
+        install.mingw = self.mingw
+        install.integrated_opencl = self.integrated_opencl
+        install.gpu = self.gpu
+        install.cuda = self.cuda
+        install.boost_root = self.boost_root
+        install.boost_dir = self.boost_dir
+        install.boost_include_dir = self.boost_include_dir
+        install.boost_librarydir = self.boost_librarydir
+        install.opencl_include_dir = self.opencl_include_dir
+        install.opencl_library = self.opencl_library
+        install.mpi = self.mpi
+        install.hdfs = self.hdfs
+        install.precompile = self.precompile
+        install.time_costs = self.time_costs
+        install.nomp = self.nomp
+        install.bit32 = self.bit32
 
 
 if __name__ == '__main__':
