@@ -54,11 +54,9 @@ void TestTransformE2E() {
   string actual_line;
   std::getline(expectin, expect_line);
   std::getline(actualin, actual_line);
-  if (expect_line.compare(actual_line) != 0) {
-    Log::Fatal("Failed to compare expect output and actual output!");
-  } else {
-    Log::Info("All passed");
-  }
+  
+  assert(expect_line.compare(actual_line) == 0);
+  Log::Info("All passed");
 }
 
 int main() {

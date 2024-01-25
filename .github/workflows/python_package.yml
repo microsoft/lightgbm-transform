@@ -36,13 +36,18 @@ jobs:
           # Should clone recursively, or cannot find external libs of LightGBM
           submodules: recursive
 
-      - name: Setup and run tests
+      - name: Setup
         shell: bash
         run: |
           sh ./.ci/setup.sh || exit -1
+
+      - name: Test
+        shell: bash
+        run: |
           export PYTHONPATH=${GITHUB_WORKSPACE}/external_libs/LightGBM/python-package
           echo ${PYTHONPATH}
           pytest ./tests
+          ./build/src/TransformProcessor/test/Tests
 
   all-successful:
     # https://github.community/t/is-it-possible-to-require-all-github-actions-tasks-to-pass-without-enumerating-them/117957/4?u=graingert
